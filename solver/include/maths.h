@@ -1,1 +1,3 @@
-double area(double, double, (double)(*)(double), (double)(*)(double), (double)(*)(double));
+typedef (double)(*function)(double);
+
+double area(double, double, function[], function[]);
