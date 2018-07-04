@@ -15,7 +15,7 @@ int main(int argc, char** argv) {
 		   global df3\n \
 		   \n \
 		   section .rodata\n \
-		   a dq 0.0\n \
+		   a dq 0.1\n \
 		   b dq 4.0\n \
 		   const1 dq 2.0\n \
 		   const2 dq 4.0\n \
