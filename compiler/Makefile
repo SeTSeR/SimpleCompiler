@@ -16,3 +16,9 @@ dir:
 
 $(OBJ): $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) $(CFLAGS) $< -o $@
+
+clean:
+	rm -r $(BUILD_DIR)
+	rm $(EXE)
+
+PHONY: dir clean
