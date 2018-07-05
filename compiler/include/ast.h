@@ -1,1 +1,1 @@
-typedef AST void;
+typedef void AST;
