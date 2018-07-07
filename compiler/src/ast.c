@@ -43,10 +43,19 @@ void print_tree(AST* to_print, FILE* out) {
             switch(to_print->operator_type) {
                 case SIN:
                     op = "sin";
+                    print_tree(to_print->first_arg, out);
+                    fprintf(out, " %s", op);
+                    break;
                 case COS:
                     op = "cos";
+                    print_tree(to_print->first_arg, out);
+                    fprintf(out, " %s", op);
+                    break;
                 case TAN:
                     op = "tan";
+                    print_tree(to_print->first_arg, out);
+                    fprintf(out, " %s", op);
+                    break;
                 case CTG:
                     op = "ctg";
                     print_tree(to_print->first_arg, out);
@@ -54,16 +63,32 @@ void print_tree(AST* to_print, FILE* out) {
                     break;
                 case PLUS:
                     op = "+";
+                    print_tree(to_print->first_arg, out);
+                    fputs(" ", out);
+                    print_tree(to_print->second_arg, out);
+                    fprintf(out, " %s", op);
+                    break;
                 case MINUS:
                     op = "-";
+                    print_tree(to_print->first_arg, out);
+                    fputs(" ", out);
+                    print_tree(to_print->second_arg, out);
+                    fprintf(out, " %s", op);
+                    break;
                 case MULTIPLY:
                     op = "*";
+                    print_tree(to_print->first_arg, out);
+                    fputs(" ", out);
+                    print_tree(to_print->second_arg, out);
+                    fprintf(out, " %s", op);
+                    break;
                 case DIVIDE:
                     op = "/";
                     print_tree(to_print->first_arg, out);
                     fputs(" ", out);
                     print_tree(to_print->second_arg, out);
                     fprintf(out, " %s", op);
+                    break;
             }
             break;
     }
