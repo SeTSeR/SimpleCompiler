@@ -28,5 +28,14 @@ int main(int argc, char** argv) {
     char *listing = gen_listing(a, b, functions, derivatives);
     FILE *outfile = fopen(argv[2], "wt");
     fclose(outfile);
+    char test1[] = "2 3 +";
+    print_tree(parse(test1), stdout);
+    puts("");
+    char test2[] = "2 x *";
+    print_tree(parse(test2), stdout);
+    puts("");
+    char test3[] = "e sin";
+    print_tree(parse(test3), stdout);
+    puts("");
     return 0;
 }
