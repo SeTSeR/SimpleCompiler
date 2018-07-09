@@ -116,6 +116,28 @@ AST* copy_tree(AST* source) {
     return result;
 }
 
+void move_tree(AST *source, AST *dest) {
+	dest->node_type = source->node_type;
+	switch(source->node_type) {
+		case CONSTANT:
+			dest->value = source->value;
+			break;
+		case EXPRESSION:
+			dest->operator_type = source->operator_type;
+			dest->first_arg = source->first_arg;
+            switch(source->operator_type) {
+                case PLUS:
+                case MINUS:
+                case MULTIPLY:
+                case DIVIDE:
+			        dest->second_arg = source->second_arg;
+                    break;
+            }
+			break;
+	}
+	free(source); // Not destroy_tree! We should move only the node.
+}
+
 bool equals(AST* left, AST* right) {
     double accuracy = 0.000001;
     if(left->node_type != right->node_type) {

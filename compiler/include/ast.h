@@ -43,6 +43,8 @@ void print_tree(AST*, FILE*);
 
 AST* copy_tree(AST*);
 
+void move_tree(AST*, AST*);
+
 bool equals(AST*, AST*);
 
 #endif

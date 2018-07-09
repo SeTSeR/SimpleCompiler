@@ -41,6 +41,5 @@ int main(int argc, char** argv) {
     char *listing = gen_listing(a, b, functions, derivatives);
     FILE *outfile = fopen(argv[2], "wt");
     fclose(outfile);
-    test_derivative();
     return 0;
 }
