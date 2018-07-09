@@ -9,6 +9,19 @@
 #include <stdlib.h>
 #include <string.h>
 
+void test_derivative() {
+    char test1[] = "2 x +";
+    char ans1[] = "0 1 +";
+    char test2[] = "x sin x cos *";
+    char ans2[] = "x cos 1 * x cos * x sin 0 x sin 1 * - * +";
+    char test3[] = "x tan x ctg +";
+    char ans3[] = "1 x cos x cos * / 0 1 x sin x sin * / - +";
+    printf("%d %d %d",
+            equals(derivative(parse(test1)), parse(ans1)),
+            equals(derivative(parse(test2)), parse(ans2)),
+            equals(derivative(parse(test3)), parse(ans3)));
+}
+
 int main(int argc, char** argv) {
     if(argc != 3) error("You must provide exactly two arguments: name of input file and name of output file.");
     FILE *infile = fopen(argv[1], "rt");
@@ -28,14 +41,6 @@ int main(int argc, char** argv) {
     char *listing = gen_listing(a, b, functions, derivatives);
     FILE *outfile = fopen(argv[2], "wt");
     fclose(outfile);
-    char test1[] = "2 3 +";
-    print_tree(parse(test1), stdout);
-    puts("");
-    char test2[] = "2 x *";
-    print_tree(parse(test2), stdout);
-    puts("");
-    char test3[] = "e sin";
-    print_tree(parse(test3), stdout);
-    puts("");
+    test_derivative();
     return 0;
 }

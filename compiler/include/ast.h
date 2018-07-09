@@ -1,6 +1,7 @@
 #ifndef _AST_H
 #define _AST_H
 
+#include <stdbool.h>
 #include <stdio.h>
 
 enum NODE_TYPE {
@@ -41,5 +42,7 @@ void destroy_tree(AST*);
 void print_tree(AST*, FILE*);
 
 AST* copy_tree(AST*);
+
+bool equals(AST*, AST*);
 
 #endif

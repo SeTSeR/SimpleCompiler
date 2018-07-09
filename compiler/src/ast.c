@@ -1,5 +1,6 @@
 #include "ast.h"
 
+#include <math.h>
 #include <stdlib.h>
 
 AST* create_tree() {
@@ -113,4 +114,36 @@ AST* copy_tree(AST* source) {
         }
     }
     return result;
+}
+
+bool equals(AST* left, AST* right) {
+    double accuracy = 0.000001;
+    if(left->node_type != right->node_type) {
+        return false;
+    }
+    switch(left->node_type) {
+        case CONSTANT:
+            if(fabs(left->value - right->value) >= accuracy) {
+                return false;
+            }
+            break;
+        case EXPRESSION:
+            if(left->operator_type != right->operator_type) {
+                return false;
+            }
+            if(!equals(left->first_arg, right->first_arg)) {
+                return false;
+            }
+            switch(left->operator_type) {
+                case PLUS:
+                case MINUS:
+                case MULTIPLY:
+                case DIVIDE:
+                    if(!equals(left->second_arg, right->second_arg)) {
+                        return false;
+                    }
+            }
+            break;
+    }
+    return true;
 }
