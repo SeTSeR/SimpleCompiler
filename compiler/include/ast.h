@@ -40,4 +40,6 @@ AST *create_tree();
 void destroy_tree(AST*);
 void print_tree(AST*, FILE*);
 
+AST* copy_tree(AST*);
+
 #endif

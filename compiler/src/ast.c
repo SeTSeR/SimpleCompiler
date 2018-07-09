@@ -93,3 +93,24 @@ void print_tree(AST* to_print, FILE* out) {
             break;
     }
 }
+
+AST* copy_tree(AST* source) {
+    AST *result = create_tree();
+    result->node_type = source->node_type;
+    if(source->node_type == CONSTANT) {
+        result->value = source->value;
+    }
+    else if(source->node_type == EXPRESSION) {
+        result->operator_type = source->operator_type;
+        result->first_arg = copy_tree(source->first_arg);
+        switch(source->operator_type) {
+            case PLUS:
+            case MINUS:
+            case MULTIPLY:
+            case DIVIDE:
+                result->second_arg = copy_tree(source->second_arg);
+                break;
+        }
+    }
+    return result;
+}
