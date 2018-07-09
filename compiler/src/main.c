@@ -22,6 +22,25 @@ void test_derivative() {
             equals(derivative(parse(test3)), parse(ans3)));
 }
 
+void test_optimizer() {
+    AST* tree;
+    char test1[] = "2 3 * x 7 6 - + *";
+    char ans1[] = "6 x 7 6 - + *";
+    char test2[] = "0 x 2 + x cos * /";
+    char ans2[] = "0";
+    char test3[] = "2 x * 0 -";
+    char ans3[] = "2 x *";
+    tree = parse(test1);
+    optimize(tree);
+    printf("%d ", equals(tree, parse(ans1)));
+    tree = parse(test2);
+    optimize(tree);
+    printf("%d ", equals(tree, parse(ans2)));
+    tree = parse(test3);
+    optimize(tree);
+    printf("%d", equals(tree, parse(ans3)));
+}
+
 int main(int argc, char** argv) {
     if(argc != 3) error("You must provide exactly two arguments: name of input file and name of output file.");
     FILE *infile = fopen(argv[1], "rt");
@@ -41,5 +60,6 @@ int main(int argc, char** argv) {
     char *listing = gen_listing(a, b, functions, derivatives);
     FILE *outfile = fopen(argv[2], "wt");
     fclose(outfile);
+    test_optimizer();
     return 0;
 }
