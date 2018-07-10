@@ -1,3 +1,5 @@
 #include "ast.h"
 
-char* gen_listing(double a, double b, AST* functions[], AST* derivatives[]);
+#include <stdio.h>
+
+void gen_listing(double a, double b, AST* functions[], AST* derivatives[], FILE* out);
