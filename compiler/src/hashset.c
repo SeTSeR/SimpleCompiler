@@ -9,7 +9,7 @@
 #define ALLOWED_LOAD_FACTOR 0.5
 
 enum {
-    INITSIZE = 4,
+    INITSIZE = 128,
 };
 
 struct hashset {
