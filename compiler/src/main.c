@@ -56,10 +56,12 @@ int main(int argc, char** argv) {
     }
     fclose(infile);
     for(int i = 0; i < 3; ++i) derivatives[i] = derivative(functions[i]);
-    for(int i = 0; i < 6; ++i) optimize(functions[i]);
+    for(int i = 0; i < 3; ++i) {
+        optimize(functions[i]);
+        optimize(derivatives[i]);
+    }
     FILE *outfile = fopen(argv[2], "wt");
     gen_listing(a, b, functions, derivatives, outfile);
     fclose(outfile);
-    test_optimizer();
     return 0;
 }

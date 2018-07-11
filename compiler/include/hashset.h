@@ -1,3 +1,5 @@
+#include <stddef.h>
+
 typedef struct hashset hashset;
 
 struct hashset;
@@ -5,6 +7,8 @@ struct hashset;
 hashset* create_hashset();
 void destroy_hashset(hashset*);
 
-void insert(hashset*, double value);
+void insert(hashset*, double);
 
-double* to_array(hashset*, int*);
+void append(hashset*, hashset*);
+
+double* to_array(hashset*, size_t*);
